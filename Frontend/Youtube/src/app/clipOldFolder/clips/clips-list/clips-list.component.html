@@ -1,0 +1,106 @@
+<!-- <div class="allin"> -->
+
+<div style="margin-top: 3rem;">
+
+  <div class="allin">
+
+    <div>
+      <!-- <mat-form-field style="margin-top: 1rem;" class="allin"> -->
+      <mat-form-field class="allin" appearance="outline">
+        <mat-label>Favorite category</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="All *">
+          <mat-option *ngFor="let cate of setCategoryies" [value]="cate">
+            {{cate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+
+
+      <p class="allin"> Selected category: {{selectedValue}} </p>
+
+      <br>
+      <div class="allin">
+        <button mat-stroked-button color="primary" type="button" (click)="filterClips($event)">Show Clips </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<h2 class="allin">{{testLabel}}</h2>
+
+
+<div>
+  <a class="allin">Search Clip Box</a>
+  <br>
+  <h4 class="allin">Search Box Auto Complate</h4>
+  <br>
+
+
+  <!-- <div style="margin: 0 auto; width: 656px; text-align: center;"> -->
+
+  <div class="allin">
+
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Clip name</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Clip name" matInput [matAutocomplete]="auto"
+          [formControl]="autoComplateControl">
+
+
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+          (optionSelected)='showClippp($event.option.value)'>
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <button mat-stroked-button (click)="clearSearchClip()" style="padding: 1.7rem; margin-top: -1.4rem;">Clear</button>
+
+  </div>
+
+
+
+
+
+
+  <!--  -->
+
+  <div *ngFor=" let clip of clipResultsSearch" style="margin: 1rem;">
+    <app-clip-card [clip]="clip"></app-clip-card>
+  </div>
+
+  <!--  -->
+
+
+</div>
+
+
+
+<!-- <div style="margin: 4rem" class="main-div"> -->
+<div style="margin-top: 1rem;">
+
+  <div class="main-div">
+    <!-- <div fxLayout="row wrap" fxLayoutGap="2rem grid"> -->
+
+
+
+    <!-- <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="100%" *ngFor="let clip of showClips" class="example-card mycards"> -->
+    <div *ngFor="let clip of showClips" style="margin: 1rem;">
+      <app-clip-card [clip]="clip"></app-clip-card>
+    </div>
+
+
+
+    <p *ngIf="showClips.length < 1">No Clips Here</p>
+
+
+  </div>
+
+  <p> End For Now</p>
+</div>

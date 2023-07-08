@@ -1,0 +1,18 @@
+.centerIt {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: center;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+}
+
+.main-div {
+  /* height: 70vh; */
+  display: flex;
+  justify-content: center;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+}

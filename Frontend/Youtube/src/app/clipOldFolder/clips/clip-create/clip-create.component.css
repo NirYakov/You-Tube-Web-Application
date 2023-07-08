@@ -1,0 +1,10 @@
+.example-form-field {
+    width: 600px;
+  }
+
+  .main-div{
+    /* height: 50rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

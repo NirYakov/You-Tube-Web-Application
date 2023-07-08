@@ -1,0 +1,32 @@
+<div class="main-div">
+
+  <mat-card style="border-radius: 1rem;">
+    <mat-card-header>
+      <!-- <h4>Resource URL:</h4>
+      <p>Showing: {{clip.shortUri}}</p> -->
+
+      <mat-card-title>{{clip.catagory}}</mat-card-title>
+
+      <mat-card-subtitle>
+        <!-- <a style="cursor: pointer;" (click)="onClickNameClip(clip)"> -->
+        <a style="cursor: pointer;">
+          {{clip.name}}
+        </a>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle>
+        {{baseUriYt + clip.shortUri}}
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+
+    <div class=" centerIt">
+      <mat-card-content>
+        <iframe class="e2e-iframe-trusted-src" style="border-radius: 0.5rem;"
+          [src]="returnVideoUrl(  clip.shortUri)"></iframe>
+      </mat-card-content>
+    </div>
+
+  </mat-card>
+</div>
