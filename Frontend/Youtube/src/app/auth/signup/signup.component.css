@@ -6,3 +6,13 @@ mat-form-field {
 mat-spinner {
   margin: auto;
 }
+
+.widthForm {
+  width: 500px;
+  margin: 2rem;
+}
+
+.centerClass {
+  display: flex;
+  justify-content: center;
+}

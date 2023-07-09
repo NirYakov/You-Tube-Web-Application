@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Clip } from '../clip.model';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-clip-card',
@@ -9,7 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ClipCardComponent implements OnInit {
 
-  baseUriYt = "https://www.youtube.com/embed/";
+  baseUriYt: SafeResourceUrl = "https://www.youtube.com/embed/";
+  YtUrl: SafeResourceUrl = "https://www.youtube.com/embed/";
 
   @Input() clip: Clip =
     {
@@ -21,6 +22,7 @@ export class ClipCardComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.YtUrl = this.returnVideoUrl(this.clip.shortUri);
   }
 
   returnVideoUrl(id: string) {

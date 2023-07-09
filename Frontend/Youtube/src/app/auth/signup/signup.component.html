@@ -1,17 +1,41 @@
-<h1>Hey</h1>
+<div class="centerClass">
+  <div class="widthForm">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form (ngSubmit)="onSignup()" *ngIf="!isLoading" [formGroup]="form">
+      <div style="margin-bottom: 2rem;">
 
-<mat-card>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form (ngSubmit)="onSignup()" *ngIf="!isLoading" [formGroup]="form">
-    <mat-form-field>
-      <input matInput name="email" type="email" placeholder="Email" formControlName="email">
-      <mat-error *ngIf="form.invalid">Please enter a valid email.</mat-error>
-    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput name="email" type="email" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="form.invalid">Please enter a valid email.</mat-error>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input type="password" name="password" matInput placeholder="Password" formControlName="password">
-      <mat-error *ngIf="form.invalid">Please enter a valid password.</mat-error>
-    </mat-form-field>
-    <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Signup</button>
-  </form>
-</mat-card>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" name="password" matInput placeholder="Password" formControlName="password">
+          <mat-error *ngIf="form.invalid">Please enter a valid password.</mat-error>
+          <mat-error *ngIf="form.invalid">Your password must have lower case, upper case and numeric
+            characters.</mat-error>
+
+          <!-- <div class="field-message" *ngIf="password.errors?.['passwordStrength']">
+        Your password must have lower case, upper case and numeric characters.
+      </div> -->
+
+          <!-- <div class="field-message" *ngIf="password.errors?.passwordStrength">
+        Your password must have lower case, upper case and numeric characters.
+      </div> -->
+
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input type="password" name="confirmPassword" matInput placeholder="Confirm Password"
+            formControlName="confirmPassword">
+          <mat-error *ngIf="form.invalid">Your passwords must match</mat-error>
+        </mat-form-field>
+
+      </div>
+      <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Signup</button>
+    </form>
+  </div>
+</div>

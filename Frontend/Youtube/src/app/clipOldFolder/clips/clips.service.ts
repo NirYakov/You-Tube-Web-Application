@@ -40,7 +40,7 @@ export class ClipsService {
     // return [...this.myClips];
 
     this.setCategoryies.add("All *");
-    // this.updateInternal();
+    this.updateInternal();
   }
 
 

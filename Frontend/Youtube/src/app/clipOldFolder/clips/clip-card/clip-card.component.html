@@ -14,17 +14,20 @@
         </a>
       </mat-card-subtitle>
 
-      <mat-card-subtitle>
-        {{baseUriYt + clip.shortUri}}
+      <!-- <mat-card-subtitle>
+        {{ baseUriYt + clip.shortUri}}
       </mat-card-subtitle>
+
+      <mat-card-subtitle>
+        {{ clip.shortUri}}
+      </mat-card-subtitle> -->
 
     </mat-card-header>
 
 
     <div class=" centerIt">
       <mat-card-content>
-        <iframe class="e2e-iframe-trusted-src" style="border-radius: 0.5rem;"
-          [src]="returnVideoUrl(  clip.shortUri)"></iframe>
+        <iframe class="e2e-iframe-trusted-src" style="border-radius: 0.5rem;" [src]="YtUrl"></iframe>
       </mat-card-content>
     </div>
 
