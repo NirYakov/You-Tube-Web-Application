@@ -1,0 +1,62 @@
+<div class="main-div">
+
+  <mat-card style="border-radius: 1rem;" class="cardWidth">
+    <mat-card-header>
+      <!-- <h4>Resource URL:</h4>
+      <p>Showing: {{clip.shortUri}}</p> -->
+
+      <mat-card-title>{{clip.catagory}}</mat-card-title>
+
+      <mat-card-subtitle>
+        <!-- <a style="cursor: pointer;" (click)="onClickNameClip(clip)"> -->
+        <a style="cursor: pointer;">
+          {{clip.name}}
+        </a>
+      </mat-card-subtitle>
+
+      <!-- <mat-card-subtitle>
+        {{ baseUriYt + clip.shortUri}}
+      </mat-card-subtitle>
+
+      <mat-card-subtitle>
+        {{ clip.shortUri}}
+      </mat-card-subtitle> -->
+
+    </mat-card-header>
+
+
+    <div class=" centerIt">
+      <mat-card-content>
+        <iframe class="e2e-iframe-trusted-src clipWidth" style="border-radius: 0.5rem;" [src]="YtUrl"></iframe>
+      </mat-card-content>
+    </div>
+
+  </mat-card>
+
+
+</div>
+
+<br><br><br><br>
+
+<div class="main-div">
+
+  <button (click)="EditMode()" *ngIf="!editMode"> Edit </button>
+
+  <div *ngIf="editMode">
+
+    <p>Edit name of the clip</p>
+    <input>
+
+    <p>Edit category of the clip</p>
+    <input>
+
+    <p>Edit review of the clip</p>
+    <input>
+
+    <br>
+
+    <button> Save </button>
+    <button> Delete Clip </button>
+
+  </div>
+</div>

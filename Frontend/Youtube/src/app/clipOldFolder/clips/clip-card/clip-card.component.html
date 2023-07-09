@@ -1,4 +1,4 @@
-<div class="main-div">
+<div class=" main-div">
 
   <mat-card style="border-radius: 1rem;">
     <mat-card-header>
@@ -9,7 +9,7 @@
 
       <mat-card-subtitle>
         <!-- <a style="cursor: pointer;" (click)="onClickNameClip(clip)"> -->
-        <a style="cursor: pointer;">
+        <a style="cursor: pointer;" routerLink="/single" routerLinkActive="mat-accent">
           {{clip.name}}
         </a>
       </mat-card-subtitle>
@@ -25,7 +25,7 @@
     </mat-card-header>
 
 
-    <div class=" centerIt">
+    <div class="centerIt">
       <mat-card-content>
         <iframe class="e2e-iframe-trusted-src" style="border-radius: 0.5rem;" [src]="YtUrl"></iframe>
       </mat-card-content>

@@ -1,3 +1,78 @@
-<p>
-  clip-edit works!
-</p>
+<div class="centerClass">
+  <div class="widthForm">
+
+
+    <!-- <div style="background-color: azure;">
+        <mat-card color="primary"> -->
+
+    <!-- later chage back to origin color or something like that -->
+    <!-- <form> -->
+
+    <!-- <form class="example-form"> -->
+    <div>
+
+
+      <mat-form-field class="example-form-field" appearance="outline">
+
+        <mat-label>Youtube link?</mat-label>
+        <input matInput type="text" [(ngModel)]="link" (change)="changeValue()">
+
+        <!-- <button>LOL</button> -->
+
+        <!-- <button *ngIf="link" matSuffix mat-icon-button aria-label="Clear" (click)="link=''">
+          Close?
+          <mat-icon>close</mat-icon>
+        </button> -->
+
+
+      </mat-form-field>
+      <br>
+
+      <button mat-stroked-button color="primary">Search</button>
+
+      <p>Value: {{link}}</p>
+
+
+      <div>
+
+        <mat-form-field>
+          <mat-label>Favorite category</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="All *">
+            <mat-option *ngFor="let cate of setCategoryies" [value]="cate">
+              {{cate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p> Selected category: {{selectedValue}} </p>
+      </div>
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Clip name</mat-label>
+        <input matInput #message maxlength="32" placeholder="Clip name">
+        <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
+      </mat-form-field>
+
+
+      <div *ngIf="flagHaveYoutubeLink">
+        <br>
+        <p body-1> Preview</p>
+        <br>
+        <iframe class="e2e-iframe-trusted-src" class="" [src]="youtubeLink"></iframe>
+      </div>
+
+      <br>
+      <button mat-stroked-button color="primary" class="example-form-field" type="button" (click)="AddNewClip()">Add
+        New
+        Clip</button>
+
+      <!-- </form> -->
+
+      <br>
+    </div>
+    <!-- </form> -->
+
+    <!-- </mat-card>
+      </div> -->
+  </div>
+</div>

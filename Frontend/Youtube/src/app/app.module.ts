@@ -26,6 +26,8 @@ import { ClipCreateComponent } from './clipOldFolder/clips/clip-create/clip-crea
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AutocompleteAutoActiveFirstOptionExampleComponent } from './clipOldFolder/Autocomplete-Auto-Active-First-Option-Example/Autocomplete-Auto-Active-First-Option-Example.component';
 import { ClipCardComponent } from './clipOldFolder/clips/clip-card/clip-card.component';
+import { ClipEditComponent } from './clipOldFolder/clips/clip-edit/clip-edit.component';
+import { ClipSingleComponent } from './clipOldFolder/clips/clip-single/clip-single.component';
 
 
 
@@ -40,6 +42,9 @@ import { ClipCardComponent } from './clipOldFolder/clips/clip-card/clip-card.com
     ClipCreateComponent,
     AutocompleteAutoActiveFirstOptionExampleComponent,
     ClipCardComponent,
+    ClipEditComponent,
+    ClipSingleComponent,
+
   ],
   imports: [
     BrowserModule,

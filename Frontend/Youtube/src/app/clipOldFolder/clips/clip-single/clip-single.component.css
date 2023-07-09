@@ -10,3 +10,12 @@
 
   flex-wrap: wrap;
 }
+
+.cardWidth {
+  width: 700px;
+}
+
+.clipWidth {
+  width: 600px;
+  height: 400px;
+}
