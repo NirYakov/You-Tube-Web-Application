@@ -38,7 +38,7 @@ export class ClipEditComponent implements OnInit {
   ngAfterViewInit(): void {
     // this.initCreateAndAll()
 
-    this.youtubeLink = this.youtubeUrl(this.clip.shortUri);
+    // this.youtubeLink = this.youtubeUrl(this.clip.shortUri);
 
   }
 
@@ -58,19 +58,22 @@ export class ClipEditComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    // this.subCategories.unsubscribe();
+    this.subCategories.unsubscribe();
   }
 
 
   ngOnInit() {
 
-    this.initCreateAndAll()
+    console.log("Hre in the init ?");
+
+    // this.initCreateAndAll()
 
   }
 
   initCreateAndAll() {
     this.subCategories = this.clipsService.getCategoryUpdateListener().subscribe(cate => {
       this.setCategoryies = cate;
+      console.log("L o l");
     });
 
     // const routId = this.route.snapshot.params['id'];

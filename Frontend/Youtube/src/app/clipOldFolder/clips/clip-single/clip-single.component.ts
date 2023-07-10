@@ -1,18 +1,31 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Clip } from '../clip.model';
+import { FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { ClipsService } from '../clips.service';
 
 @Component({
   selector: 'app-clip-single',
   templateUrl: './clip-single.component.html',
   styleUrls: ['./clip-single.component.css']
 })
-export class ClipSingleComponent implements OnInit {
+export class ClipSingleComponent implements OnInit, OnDestroy {
 
-  baseUriYt: SafeResourceUrl = "https://www.youtube.com/embed/";
+  // baseUriYt: SafeResourceUrl = "https://www.youtube.com/embed/";
   YtUrl: SafeResourceUrl = "https://www.youtube.com/embed/";
 
   editMode = false;
+
+  myReviewText = new FormControl('');
+  selectFormControl = new FormControl('', [Validators.required]);
+  clipnameControl = new FormControl('', [Validators.required]);
+  // selectFormControl
+
+
+  setCategoryies = new Set();
+
+  subCategories!: Subscription;
 
 
   @Input() clip: Clip =
@@ -22,10 +35,34 @@ export class ClipSingleComponent implements OnInit {
       name: "stressed out",
     };
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private clipsService: ClipsService) { }
 
   ngOnInit() {
     this.YtUrl = this.returnVideoUrl(this.clip.shortUri);
+
+    this.initCreateAndAll();
+
+  }
+
+  initCreateAndAll() {
+    this.subCategories = this.clipsService.getCategoryUpdateListener().subscribe(cate => {
+      // cate.delete(cate[0]);
+      const [el] = cate;
+      cate.delete(el);
+      this.setCategoryies = cate;
+      console.log("this.setCategoryies", this.setCategoryies);
+      this.selectFormControl.setValue(this.clip.catagory);
+
+    });
+
+    this.clipsService.getClips(" ");
+
+    this.clipnameControl.setValue(this.clip.name);
+
+  }
+
+  ngOnDestroy(): void {
+    this.subCategories.unsubscribe();
   }
 
   returnVideoUrl(id: string) {
@@ -41,4 +78,18 @@ export class ClipSingleComponent implements OnInit {
   }
 
   EditMode() { this.editMode = true; }
+
+  onSave() {
+
+
+    console.log("this.selectFormControl", this.selectFormControl);
+    console.log("this.myReviewText", this.myReviewText);
+    console.log("this.clipnameControl", this.clipnameControl);
+
+
+  }
+
+  onDelete() {
+    console.log("onDelete() ...");
+  }
 }

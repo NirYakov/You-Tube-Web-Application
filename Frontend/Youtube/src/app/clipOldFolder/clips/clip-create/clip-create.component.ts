@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ClipsService } from '../clips.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { FormControl, Validators } from '@angular/forms';
 
 
 
@@ -18,9 +19,14 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   youtubeLink: SafeResourceUrl = "";
   flagHaveYoutubeLink = false;
+  newCategoryMode = false;
 
   selectedValue!: string;
   setCategoryies = new Set();
+
+  newCategoryForm = new FormControl('', [Validators.required]);
+  selectFormControl = new FormControl('', [Validators.required]);
+  clipnameControl = new FormControl('', [Validators.required]);
 
 
   subCategories!: Subscription;
@@ -32,6 +38,10 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     // this.initCreateAndAll()
 
+  }
+
+  makeNewCategory() {
+    this.newCategoryMode = !this.newCategoryMode;
   }
 
   youtubeUrl(link: string) {
@@ -50,7 +60,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    // this.subCategories.unsubscribe();
+    this.subCategories.unsubscribe();
   }
 
 
@@ -62,6 +72,8 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   initCreateAndAll() {
     this.subCategories = this.clipsService.getCategoryUpdateListener().subscribe(cate => {
+      const [el] = cate;
+      cate.delete(el);
       this.setCategoryies = cate;
     });
 
@@ -86,5 +98,21 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     else {
       console.log("Not have Clip Value");
     }
+  }
+
+
+
+  AddNewClipTest() {
+
+    let category = this.selectFormControl.value;
+
+    if (this.newCategoryMode) {
+      category = this.newCategoryForm.value;
+    }
+
+    console.log("category", category);
+    console.log("link", this.link);
+    console.log("clipnameControl.value", this.clipnameControl.value);
+
   }
 }

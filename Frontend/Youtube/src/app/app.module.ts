@@ -28,7 +28,7 @@ import { AutocompleteAutoActiveFirstOptionExampleComponent } from './clipOldFold
 import { ClipCardComponent } from './clipOldFolder/clips/clip-card/clip-card.component';
 import { ClipEditComponent } from './clipOldFolder/clips/clip-edit/clip-edit.component';
 import { ClipSingleComponent } from './clipOldFolder/clips/clip-single/clip-single.component';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 
@@ -70,6 +70,8 @@ import { ClipSingleComponent } from './clipOldFolder/clips/clip-single/clip-sing
     MatAutocompleteModule,
 
     ReactiveFormsModule,
+    MatButtonToggleModule,
+
 
   ],
   providers: [

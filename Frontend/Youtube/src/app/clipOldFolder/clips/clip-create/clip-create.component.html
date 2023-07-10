@@ -32,26 +32,48 @@
 
       <p>Value: {{link}}</p>
 
+      <mat-form-field class="example-full-width">
+        <mat-label>Clip name</mat-label>
+        <input matInput #message maxlength="32" placeholder="Clip name" [formControl]="clipnameControl">
+        <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
+      </mat-form-field>
 
-      <div>
+
+      <div *ngIf="!newCategoryMode">
+
+        <h3>Pick category</h3>
 
         <mat-form-field>
           <mat-label>Favorite category</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="All *">
+          <mat-select [formControl]="selectFormControl" name="All *">
             <mat-option *ngFor="let cate of setCategoryies" [value]="cate">
               {{cate}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <p> Selected category: {{selectedValue}} </p>
+        <p> Selected category: {{selectFormControl.value}} </p>
+      </div>
+
+      <!-- <button (click)="makeNewCategory()">Make new category</button> -->
+
+      <mat-button-toggle (change)="makeNewCategory()">Make new category</mat-button-toggle>
+
+      <div *ngIf="newCategoryMode">
+        <h3>Create new category</h3>
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Category</mat-label>
+          <input matInput #cate maxlength="32" placeholder="Catergory" [formControl]="newCategoryForm">
+          <mat-hint align="end">{{cate.value.length}} / 32</mat-hint>
+        </mat-form-field>
+
+        <br>
+
       </div>
 
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Clip name</mat-label>
-        <input matInput #message maxlength="32" placeholder="Clip name">
-        <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
-      </mat-form-field>
+
 
 
       <div *ngIf="flagHaveYoutubeLink">
@@ -62,7 +84,7 @@
       </div>
 
       <br>
-      <button mat-stroked-button color="primary" class="example-form-field" type="button" (click)="AddNewClip()">Add
+      <button mat-stroked-button color="primary" class="example-form-field" type="button" (click)="AddNewClipTest()">Add
         New
         Clip</button>
 

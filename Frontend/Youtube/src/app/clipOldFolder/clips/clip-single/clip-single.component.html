@@ -1,6 +1,6 @@
 <div class="main-div">
 
-  <mat-card style="border-radius: 1rem;" class="cardWidth">
+  <mat-card style="border-radius: 1rem;" class="cardWidth green-shadow">
     <mat-card-header>
       <!-- <h4>Resource URL:</h4>
       <p>Showing: {{clip.shortUri}}</p> -->
@@ -40,23 +40,59 @@
 
 <div class="main-div">
 
-  <button (click)="EditMode()" *ngIf="!editMode"> Edit </button>
+
+  <button mat-raised-button color="accent" (click)="EditMode()" *ngIf="!editMode">Edit</button>
+
 
   <div *ngIf="editMode">
+    <!-- <div> -->
 
     <p>Edit name of the clip</p>
-    <input>
+    <mat-form-field class="example-full-width">
+      <mat-label>Clip name</mat-label>
+      <input matInput #message maxlength="32" placeholder="Clip name" [formControl]="clipnameControl">
+      <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
+    </mat-form-field>
+
 
     <p>Edit category of the clip</p>
-    <input>
+    <div>
+      <mat-form-field>
+        <mat-label>Favorite category</mat-label>
+        <mat-select name="All *" [formControl]="selectFormControl">
+          <!-- [name]="clip.catagory" -->
+          <mat-option *ngFor="let cate of setCategoryies" [value]="cate" value="clip.catagory">
+            {{cate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p> Selected category: {{selectFormControl.value}} </p>
+    </div>
 
     <p>Edit review of the clip</p>
-    <input>
+    <div *ngIf="editMode" style="margin-top: 1.75rem;">
+      <mat-form-field class="textBox" appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea [formControl]="myReviewText" matInput maxlength="256" placeholder="My Clip Review ..."
+          rows="10"></textarea>
+
+        <!-- <textarea formControlName="myReviewText" matInput maxlength="256"
+        placeholder="Ex. I need help with..."></textarea>
+      -->
+
+        <mat-hint align="end">{{myReviewText.value.length }} / 256</mat-hint>
+        <!-- <mat-hint align="end">{{form.get("myReviewText").value.length}} / 256</mat-hint> -->
+      </mat-form-field>
+    </div>
+
+
 
     <br>
 
-    <button> Save </button>
-    <button> Delete Clip </button>
+    <button mat-raised-button color="primary" class="btn-margin" (click)="onSave()">Save</button>
+    <button mat-raised-button color="warn" class="btn-margin" (click)="onDelete()">Delete Clip</button>
+
+    <div style="margin-top: 10rem;"></div>
 
   </div>
 </div>

@@ -19,3 +19,35 @@
   width: 600px;
   height: 400px;
 }
+
+.textBox {
+  height: 300px;
+  width: 320px;
+  padding: 0 2rem 0 2rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.btn-margin {
+  margin: 2rem;
+}
+
+.green-shadow {
+  /* border-style: solid; */
+  border: red;
+
+  border-style: solid;
+  /* border-color: #ffe261; */
+  border-width: 1px;
+
+  /*
+  box-shadow: 0px 0px 9px #1cd8d2;
+  -moz-box-shadow: 0px 0px 9px #1cd8d2;
+  -webkit-box-shadow: 0px 0px 9px #1cd8d2;
+  -khtml-box-shadow: 0px 0px 9px #1cd8d2; */
+
+  /* padding: 0.1rem; */
+}

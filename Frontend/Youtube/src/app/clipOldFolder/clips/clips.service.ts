@@ -20,6 +20,8 @@ export class ClipsService {
 
   categoryUpdate = new Subject<Set<string>>();
 
+  allStarCategory = "All *";
+
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
 
@@ -39,7 +41,7 @@ export class ClipsService {
 
     // return [...this.myClips];
 
-    this.setCategoryies.add("All *");
+    this.setCategoryies.add(this.allStarCategory);
     this.updateInternal();
   }
 
