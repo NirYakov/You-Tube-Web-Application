@@ -126,11 +126,11 @@ export class ClipsService {
       catagory: "Rock",
       name: "From heads Unworth",
     },
-    {
-      shortUri: "T60uj6EfsU8",
-      catagory: "Rock",
-      name: "From heads Unworth From heads Unworth From heads Unworth From heads Unworth",
-    },
+    // {
+    //   shortUri: "T60uj6EfsU8",
+    //   catagory: "Rock",
+    //   name: "From heads Unworth From heads Unworth From heads Unworth From heads Unworth",
+    // },
     {
       shortUri: "kXYiU_JCYtU",
       catagory: "Nu metal",

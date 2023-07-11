@@ -33,6 +33,7 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
       shortUri: "pXRviuL6vMY",
       catagory: "Nu metal",
       name: "stressed out",
+      review: "Wow the best song in the wolrd!!"
     };
 
   constructor(private sanitizer: DomSanitizer, private clipsService: ClipsService) { }

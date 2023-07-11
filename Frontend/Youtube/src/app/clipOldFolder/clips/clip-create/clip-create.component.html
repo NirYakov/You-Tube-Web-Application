@@ -1,3 +1,4 @@
+<div style="margin: 2rem"></div>
 <div class="centerClass">
   <div class="widthForm">
 
@@ -71,6 +72,22 @@
         <br>
 
       </div>
+
+      <div style="margin-top: 1.75rem;">
+        <mat-form-field class="textBox" appearance="outline">
+          <mat-label>Message</mat-label>
+          <textarea [formControl]="myReviewText" matInput maxlength="256" placeholder="My Clip Review ..."
+            rows="6"></textarea>
+
+          <!-- <textarea formControlName="myReviewText" matInput maxlength="256"
+          placeholder="Ex. I need help with..."></textarea>
+        -->
+
+          <mat-hint align="end">{{myReviewText.value.length }} / 256</mat-hint>
+          <!-- <mat-hint align="end">{{form.get("myReviewText").value.length}} / 256</mat-hint> -->
+        </mat-form-field>
+      </div>
+
 
 
 

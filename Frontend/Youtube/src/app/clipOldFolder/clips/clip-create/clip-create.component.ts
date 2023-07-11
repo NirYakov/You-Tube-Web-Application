@@ -27,6 +27,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
   newCategoryForm = new FormControl('', [Validators.required]);
   selectFormControl = new FormControl('', [Validators.required]);
   clipnameControl = new FormControl('', [Validators.required]);
+  myReviewText = new FormControl('');
 
 
   subCategories!: Subscription;
@@ -113,6 +114,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log("category", category);
     console.log("link", this.link);
     console.log("clipnameControl.value", this.clipnameControl.value);
+    console.log("myReviewText.value", this.myReviewText.value);
 
   }
 }
