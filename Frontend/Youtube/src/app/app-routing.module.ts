@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: "single", component: ClipSingleComponent },
 
   { path: "create", component: ClipCreateComponent },
-  { path: "edit", component: ClipCreateComponent },
+  // //  { path: "edit", component: ClipCreateComponent },
 
   { path: "auth", loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   // { path: '404', },
