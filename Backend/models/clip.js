@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
+const clipSchema = mongoose.Schema({
     creator: { type: String, required: true, uniqueValidator: true },
-    link: { type: String, required: true }
+    link: { type: String, required: true },
+    category: { type: String, required: true },
+    review: { type: String },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Clip", clipSchema);
