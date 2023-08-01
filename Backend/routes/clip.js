@@ -1,17 +1,17 @@
-// const express = require("express");
+const express = require("express");
 
-// const ClipController = require("../controllers/clip");
+const ClipController = require("../controllers/clip");
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post("/create", ClipController. ); // create or post a clip
+router.post("/create", ClipController.createClip); // create or post a clip
 
-// router.get("/:id", ClipController. ); // get one clip
+router.get("/:id", ClipController.getClip); // get one clip
 
-// router.get("/", ClipController. ); // get all clips
+router.get("/", ClipController.getAllUserClips); // get all clips
 
-// router.put("/:id", ClipController. ); // put / update clip
+router.put("/:id", ClipController.updatedClip); // put / update clip
 
-// router.delete("/:id", ClipController. ); // delete a clip
+router.delete("/:id", ClipController.deleteClip); // delete a clip
 
-// module.exports = router;
+module.exports = router;
