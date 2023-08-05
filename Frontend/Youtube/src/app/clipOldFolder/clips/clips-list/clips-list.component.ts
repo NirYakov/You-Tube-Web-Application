@@ -50,7 +50,7 @@ export class ClipsListComponent implements OnInit, OnDestroy {
     // const routId = this.route.snapshot.params['id'] ;
     const routId = this.route.snapshot.params['id'] || 0; // BM
 
-    this.clipsService.getClips(routId);
+    this.clipsService.getClips();
     this.inputControl = new FormControl(""); // new FormControl("",Validators.required);
 
   }

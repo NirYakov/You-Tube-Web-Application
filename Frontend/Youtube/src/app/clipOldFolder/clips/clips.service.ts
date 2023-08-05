@@ -11,9 +11,9 @@ import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 })
 export class ClipsService {
 
-  basePath = `http://localhost:3000`
+  basePath = `http://localhost:3000/api`
 
-  // myClips: Clip[] = [];
+  myClips: Clip[] = [];
 
   clipsUpdate = new Subject<Clip[]>();
   setCategoryies = new Set<string>();
@@ -25,25 +25,22 @@ export class ClipsService {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
 
+  getClips() {
+    this.http.get<{ message: string, clips: Clip[] }>(this.basePath + "/clips")
+      .subscribe(
+        {
+          next: clipsData => {
+            this.myClips = clipsData.clips;
+            this.clipsUpdate.next([...this.myClips]);
+            this.updateInternal();
 
-  getClips(routId: string) {
-
-    console.log("GetClips Front");
-
-    // console.log(`routeId :  ${routId}`);
-    // this.http.get<{ clips: Clip[] }>(this.basePath + '/clips/' + routId).subscribe((resClips) => {
-    //   this.myClips = resClips.clips;
-    //   this.updateInternal();
-
-
-    // });
-
-
-    // return [...this.myClips];
-
-    this.setCategoryies.add(this.allStarCategory);
-    this.updateInternal();
+          },
+          error: err => {
+            console.log(err);
+          }
+        });
   }
+
 
 
   addClip(category: string, ytLink: string, userId: string) {
@@ -65,37 +62,17 @@ export class ClipsService {
   }
 
   updateInternal() {
+
+    this.setCategoryies.add(this.allStarCategory);
+
+
     this.myClips.forEach(clip => this.setCategoryies.add(clip.catagory));
+
+
 
     this.categoryUpdate.next(new Set<string>(this.setCategoryies));
     this.clipsUpdate.next([...this.myClips]);
   }
-
-
-  //   addPost(title: string, content: string) {
-  //     const post: Post = { id: "", title: title, content: content };
-
-  //     this.http.post(this.basePath + "/posts", post )
-  //     .subscribe((responseData) =>
-  //     {
-  //         console.log(responseData);
-  //         this.posts.push(post);
-  //         this.postUpdate.next([...this.posts]);
-
-  //     });
-
-  // }
-
-  // getPosts() {
-  //   this.http.get<{ message: string, posts: Post[] }>(this.basePath + "/posts")
-  //       .subscribe((postData) => {
-  //           this.posts = postData.posts;
-  //           this.postUpdate.next([...this.posts]);
-  //       });
-
-  //   // return [...this.posts];
-  // }
-
 
 
   returnVideoUrl(id: string) {
@@ -120,67 +97,27 @@ export class ClipsService {
     return this.categoryUpdate.asObservable();
   }
 
-  myClips: Clip[] = [
-    {
-      shortUri: "T60uj6EfsU8",
-      catagory: "Rock",
-      name: "From heads Unworth",
-    },
-    // {
-    //   shortUri: "T60uj6EfsU8",
-    //   catagory: "Rock",
-    //   name: "From heads Unworth From heads Unworth From heads Unworth From heads Unworth",
-    // },
-    {
-      shortUri: "kXYiU_JCYtU",
-      catagory: "Nu metal",
-      name: "numb",
-    },
-    {
-      shortUri: "RRKJiM9Njr8",
-      catagory: "Rock",
-      name: "my chemical romance",
-    },
-    {
-      shortUri: "fibYknUCIU4",
-      catagory: "Rap",
-      name: "nate / clounds",
-    },
-    {
-      shortUri: "r_0JjYUe5jo",
-      catagory: "Rap",
-      name: "god zilla",
-    },
-    {
-      shortUri: "XGGWhOUYObc",
-      catagory: "Rap",
-      name: "nate / Leave me alone",
-    },
-    {
-      shortUri: "SBjQ9tuuTJQ",
-      catagory: "Rock",
-      name: "the pritender",
-    },
-    {
-      shortUri: "DWaB4PXCwFU",
-      catagory: "Rock",
-      name: "dairy of jane",
-    },
-    {
-      shortUri: "70hIRnj9kf8",
-      catagory: "Rock",
-      name: "the good die young",
-    },
-    {
-      shortUri: "3t2WkCudwfY",
-      catagory: "Nu metal",
-      name: "a place for my head",
-    },
-    {
-      shortUri: "pXRviuL6vMY",
-      catagory: "Nu metal",
-      name: "stressed out",
-    },
-  ];
+
+
+  getClip(routId: string) {
+
+    console.log("GetClip Front");
+
+    // console.log(`routeId :  ${routId}`);
+    // this.http.get<{ clips: Clip[] }>(this.basePath + '/clips/' + routId).subscribe((resClips) => {
+    //   this.myClips = resClips.clips;
+    //   this.updateInternal();
+
+
+    // });
+
+
+    // return [...this.myClips];
+
+    // this.setCategoryies.add(this.allStarCategory);
+    this.updateInternal();
+  }
+
+
 
 }

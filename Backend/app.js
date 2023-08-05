@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 
 
 const userRoutes = require("./routes/user");
+const clipsRoutes = require("./routes/clip");
 
 
 const app = express();
@@ -34,6 +35,10 @@ app.use((req, res, next) => {
 app.use("/api/user", userRoutes);
 
 app.get("/api/health", (req, res, next) => { res.status(201).json({ health: "Online ! :)" }); })
+
+app.use("/api/clips", clipsRoutes);
+
+
 
 
 module.exports = app;

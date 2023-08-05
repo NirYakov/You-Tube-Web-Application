@@ -56,7 +56,7 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
 
     });
 
-    this.clipsService.getClips(" ");
+    this.clipsService.getClips();
 
     this.clipnameControl.setValue(this.clip.name);
 

@@ -79,7 +79,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     const routId = this.route.snapshot.params['id'];
-    this.clipsService.getClips(routId);
+    this.clipsService.getClips();
   }
 
   changeValue() {
