@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'

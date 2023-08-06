@@ -29,6 +29,7 @@ import { ClipCardComponent } from './clipOldFolder/clips/clip-card/clip-card.com
 // import { ClipEditComponent } from './clipOldFolder/clips/clip-edit/clip-edit.component';
 import { ClipSingleComponent } from './clipOldFolder/clips/clip-single/clip-single.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { InfoPageComponent } from './info-page/info-page.component';
 
 
 
@@ -44,7 +45,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     ClipCardComponent,
     // ClipEditComponent,
     ClipSingleComponent,
-
+    InfoPageComponent,
+    InfoPageComponent,
   ],
   imports: [
     BrowserModule,
