@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ClipsService {
 
-  basePath = `http://localhost:3000/api`
+  basePath = `http://localhost:3000/api/`
 
   myClips: Clip[] = [];
 
@@ -25,14 +25,13 @@ export class ClipsService {
 
 
   getClips() {
-    this.http.get<{ message: string, clips: Clip[] }>(this.basePath + "/clips")
+    this.http.get<{ message: string, clips: Clip[] }>(this.basePath + "clips")
       .subscribe(
         {
           next: clipsData => {
             this.myClips = clipsData.clips;
             this.clipsUpdate.next([...this.myClips]);
             this.updateInternal();
-
           },
           error: err => {
             console.log(err);
@@ -50,7 +49,7 @@ export class ClipsService {
     };
 
     if (userId)
-      this.http.post<Clip>(this.basePath + '/createclip/' + userId, clip).subscribe(responseData => {
+      this.http.post<Clip>(this.basePath + 'clips/' + userId, clip).subscribe(responseData => {
         console.log(responseData);
         this.myClips.push(clip);
         this.updateInternal();
@@ -101,19 +100,6 @@ export class ClipsService {
   getClip(routId: string) {
 
     console.log("GetClip Front");
-
-    // console.log(`routeId :  ${routId}`);
-    // this.http.get<{ clips: Clip[] }>(this.basePath + '/clips/' + routId).subscribe((resClips) => {
-    //   this.myClips = resClips.clips;
-    //   this.updateInternal();
-
-
-    // });
-
-
-    // return [...this.myClips];
-
-    // this.setCategoryies.add(this.allStarCategory);
     this.updateInternal();
   }
 
