@@ -6,16 +6,17 @@ module.exports = function connectToMyMongo() {
 
     if (!process.env.DbString) {
 
-        process.env.ApiKey = "place holder";
         process.env.DbString = "place holder";
+        process.env.DbUsername = "place holder";
 
         try {
             const config = require("./config/config");
 
             if (config) {
-                // process.env.ApiKey = config.ApiKey;
+
                 process.env.DbString = config.DbString;
-                // console.log(process.env.ApiKey, process.env.DbString);
+                process.env.DbUsername = config.DbUsername;
+                // console.log( process.env.DbUsername, process.env.DbString);
 
             }
         }
@@ -25,7 +26,8 @@ module.exports = function connectToMyMongo() {
 
     }
 
-    const uri = `mongodb+srv://Nir:${process.env.MONGO_ATLAS_PW}@cluster0.tcpdrjy.mongodb.net/TestYoutube`;
+    const uri = `mongodb+srv://${process.env.DbUsername}:${process.env.DbString}@cluster0.weq6mmm.mongodb.net/TestYoutube?retryWrites=true&w=majority`;
+
     mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
