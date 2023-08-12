@@ -19,15 +19,15 @@ import { MyTestComponent } from './myTest/myTest/myTest.component';
 import { HeaderComponent } from './header/header.component';
 import { ErrorInterceptor } from './error-interceptor';
 import { AuthInterceptor } from './auth/auth-interceptor';
-import { ClipsListComponent } from './clipOldFolder/clips/clips-list/clips-list.component';
-import { ClipCreateComponent } from './clipOldFolder/clips/clip-create/clip-create.component';
+import { ClipsListComponent } from './clips/clips-list/clips-list.component';
+import { ClipCreateComponent } from './clips/clip-create/clip-create.component';
 
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { AutocompleteAutoActiveFirstOptionExampleComponent } from './clipOldFolder/Autocomplete-Auto-Active-First-Option-Example/Autocomplete-Auto-Active-First-Option-Example.component';
-import { ClipCardComponent } from './clipOldFolder/clips/clip-card/clip-card.component';
+import { AutocompleteAutoActiveFirstOptionExampleComponent } from './Autocomplete-Auto-Active-First-Option-Example/Autocomplete-Auto-Active-First-Option-Example.component';
+import { ClipCardComponent } from './clips/clip-card/clip-card.component';
 // import { ClipEditComponent } from './clipOldFolder/clips/clip-edit/clip-edit.component';
-import { ClipSingleComponent } from './clipOldFolder/clips/clip-single/clip-single.component';
+import { ClipSingleComponent } from './clips/clip-single/clip-single.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { InfoPageComponent } from './info-page/info-page.component';
 
