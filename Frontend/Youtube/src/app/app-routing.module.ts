@@ -9,11 +9,11 @@ import { InfoPageComponent } from './info-page/info-page.component';
 const routes: Routes = [
 
   { path: "", component: InfoPageComponent },
-  { path: "clips", component: ClipsListComponent /*, canActivate: [AuthGuard] */ },
+  { path: "clips", component: ClipsListComponent, canActivate: [AuthGuard] },
 
-  { path: "single", component: ClipSingleComponent /*, canActivate: [AuthGuard] */ },
+  { path: "single", component: ClipSingleComponent, canActivate: [AuthGuard] },
 
-  { path: "create", component: ClipCreateComponent /*, canActivate: [AuthGuard] */ },
+  { path: "create", component: ClipCreateComponent, canActivate: [AuthGuard] },
 
 
 
