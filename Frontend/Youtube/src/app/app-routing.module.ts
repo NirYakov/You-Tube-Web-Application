@@ -15,10 +15,6 @@ const routes: Routes = [
 
   { path: "create", component: ClipCreateComponent, canActivate: [AuthGuard] },
 
-
-
-  // //  { path: "edit", component: ClipCreateComponent },
-
   { path: "auth", loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   // { path: '404', },
   { path: '**', redirectTo: '/' }
