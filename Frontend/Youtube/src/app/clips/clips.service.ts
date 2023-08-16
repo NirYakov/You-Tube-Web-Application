@@ -4,13 +4,15 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../environments/environment';
+
+
+const BACKEND_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClipsService {
-
-  basePath = `http://localhost:3000/api/`
 
   myClips: Clip[] = [];
 
@@ -25,7 +27,7 @@ export class ClipsService {
 
 
   getClips() {
-    this.http.get<{ message: string, clips: Clip[] }>(this.basePath + "clips")
+    this.http.get<{ message: string, clips: Clip[] }>(BACKEND_URL + "clips")
       .subscribe(
         {
           next: clipsData => {
@@ -49,7 +51,7 @@ export class ClipsService {
     };
 
     if (userId)
-      this.http.post<Clip>(this.basePath + 'clips/' + userId, clip).subscribe(responseData => {
+      this.http.post<Clip>(BACKEND_URL + 'clips/' + userId, clip).subscribe(responseData => {
         console.log(responseData);
         this.myClips.push(clip);
         this.updateInternal();
