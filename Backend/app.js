@@ -4,14 +4,14 @@ const bodyParser = require("body-parser");
 
 const userRoutes = require("./routes/user");
 const clipsRoutes = require("./routes/clip");
-
+const configToEnv = require("./configToEnv");
 
 const app = express();
 
 
 const connectToMyMongo = require("./connectDb");
 
-
+configToEnv();
 connectToMyMongo();
 
 

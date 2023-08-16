@@ -2,31 +2,12 @@ const mongoose = require("mongoose");
 
 
 module.exports = function connectToMyMongo() {
-    //////// read form api key env ? !
 
-    if (!process.env.DbString) {
-
-        process.env.DbString = "place holder";
-        process.env.DbUsername = "place holder";
-
-        try {
-            const config = require("./config/config");
-
-            if (config) {
-
-                process.env.DbString = config.DbString;
-                process.env.DbUsername = config.DbUsername;
-                // console.log( process.env.DbUsername, process.env.DbString);
-
-            }
-        }
-        catch (error) {
-            console.log("Can't find any --- keys ----");
-        }
-
-    }
+    // console.log( process.env.DbUser , process.env.DbString);
 
     const uri = `mongodb+srv://${process.env.DbUsername}:${process.env.DbString}@cluster0.weq6mmm.mongodb.net/TestYoutube?retryWrites=true&w=majority`;
+
+    console.log(uri);
 
     mongoose.connect(uri, {
         useNewUrlParser: true,

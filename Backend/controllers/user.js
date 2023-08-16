@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.createUser = (req, res, next) => {
-    console.log("here");
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
             email: req.body.email,
@@ -28,6 +27,8 @@ exports.createUser = (req, res, next) => {
 
 exports.userLogin = (req, res, next) => {
     let fetchedUser;
+    console.log(req.body);
+
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
@@ -36,22 +37,28 @@ exports.userLogin = (req, res, next) => {
                 });
                 return false;
             }
+            console.log("fond user");
+
             fetchedUser = user;
             return bcrypt.compare(req.body.password, user.password);
         })
         .then(result => {
+            console.log("res compare passwords");
             if (!result) {
                 if (res.statusCode)
                     res.status(401).json({
                         message: "Auth failed"
                     });
                 return res;
+
             }
+            console.log("token create");
             const token = jwt.sign(
                 { email: fetchedUser.email, userId: fetchedUser._id },
                 process.env.JWT_KEY,
                 { expiresIn: "1h" }
             );
+            console.log("D token create DDDDDD");
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,

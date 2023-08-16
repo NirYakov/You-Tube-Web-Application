@@ -27,7 +27,7 @@ export class ClipsService {
 
 
   getClips() {
-    this.http.get<{ message: string, clips: Clip[] }>(BACKEND_URL + "clips")
+    this.http.get<{ message: string, clips: Clip[] }>(BACKEND_URL + "/clips")
       .subscribe(
         {
           next: clipsData => {
@@ -51,7 +51,7 @@ export class ClipsService {
     };
 
     if (userId)
-      this.http.post<Clip>(BACKEND_URL + 'clips/' + userId, clip).subscribe(responseData => {
+      this.http.post<Clip>(BACKEND_URL + '/clips/' + userId, clip).subscribe(responseData => {
         console.log(responseData);
         this.myClips.push(clip);
         this.updateInternal();
