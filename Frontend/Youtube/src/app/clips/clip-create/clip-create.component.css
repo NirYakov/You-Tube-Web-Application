@@ -37,3 +37,9 @@ mat-spinner {
 .example-full-width {
   width: 100%;
 }
+
+.centerIt {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}

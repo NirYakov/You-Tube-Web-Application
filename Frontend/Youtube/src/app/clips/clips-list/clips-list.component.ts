@@ -148,7 +148,7 @@ export class ClipsListComponent implements OnInit, OnDestroy {
     if (!this.selectedValue || this.selectedValue === this.strAll) {
       this.showClips = this.myClips;
     } else {
-      this.showClips = this.myClips.filter((clip) => clip.catagory === this.selectedValue);
+      this.showClips = this.myClips.filter((clip) => clip.category === this.selectedValue);
     }
   }
 

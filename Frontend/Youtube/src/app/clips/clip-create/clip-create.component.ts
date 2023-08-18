@@ -93,8 +93,11 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.selectedValue) {
       console.log(this.selectedValue, this.link);
       // const routId = this.route.snapshot.params['id'] || Math.floor(Math.random() * 50_000);
-      const routId = this.route.snapshot.params['id'];
-      this.clipsService.addClip(this.selectedValue, this.link.split("=")[1], routId);
+      // const routId = this.route.snapshot.params['id'];
+
+
+
+      // this.clipsService.addClip(this.selectedValue, this.link.split("=")[1], routId);
     }
     else {
       console.log("Not have Clip Value");
@@ -111,10 +114,21 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
       category = this.newCategoryForm.value;
     }
 
+    const shortUri = this.link.split("=")[1];
+    const name = this.clipnameControl.value;
+    const review = this.myReviewText.value;
+
     console.log("category", category);
-    console.log("link", this.link);
-    console.log("clipnameControl.value", this.clipnameControl.value);
-    console.log("myReviewText.value", this.myReviewText.value);
+    // console.log("link", this.link);
+    console.log("clipnameControl.value", name);
+    console.log("clipnameControl.value split ", shortUri);
+    console.log("myReviewText.value", review);
+
+
+    this.clipsService.addClip(category, shortUri, name, review);
+
+
+
 
   }
 }

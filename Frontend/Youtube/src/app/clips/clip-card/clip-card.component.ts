@@ -15,7 +15,7 @@ export class ClipCardComponent implements OnInit {
   @Input() clip: Clip =
     {
       shortUri: "pXRviuL6vMY",
-      catagory: "Nu metal",
+      category: "Nu metal",
       name: "stressed out",
     };
 

@@ -9,6 +9,13 @@ import { environment } from '../environments/environment';
 
 const BACKEND_URL = environment.apiUrl;
 
+interface clipsDb {
+  name: string,
+  link: string,
+  category: string,
+  review?: string,
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,11 +34,20 @@ export class ClipsService {
 
 
   getClips() {
-    this.http.get<{ message: string, clips: Clip[] }>(BACKEND_URL + "/clips")
+    this.http.get<{ message: string, clips: clipsDb[] }>(BACKEND_URL + "/clips")
       .subscribe(
         {
           next: clipsData => {
-            this.myClips = clipsData.clips;
+            console.log(clipsData);
+            this.myClips = clipsData.clips.map(clip => {
+              return {
+                name: clip.name,
+                shortUri: clip.link,
+                category: clip.category,
+                review: clip.review
+              }
+            });
+
             this.clipsUpdate.next([...this.myClips]);
             this.updateInternal();
           },
@@ -43,15 +59,16 @@ export class ClipsService {
 
 
 
-  addClip(category: string, ytLink: string, userId: string) {
+  addClip(category: string, ytLink: string, name: string, review: string) {
     const clip: Clip = {
       shortUri: ytLink,
-      catagory: category,
-      name: "not available",
+      category: category,
+      review: review,
+      name: name,
     };
 
-    if (userId)
-      this.http.post<Clip>(BACKEND_URL + '/clips/' + userId, clip).subscribe(responseData => {
+    if (ytLink)
+      this.http.post<Clip>(BACKEND_URL + '/clips/create', clip).subscribe(responseData => {
         console.log(responseData);
         this.myClips.push(clip);
         this.updateInternal();
@@ -66,7 +83,7 @@ export class ClipsService {
     this.setCategoryies.add(this.allStarCategory);
 
 
-    this.myClips.forEach(clip => this.setCategoryies.add(clip.catagory));
+    this.myClips.forEach(clip => this.setCategoryies.add(clip.category));
 
 
 

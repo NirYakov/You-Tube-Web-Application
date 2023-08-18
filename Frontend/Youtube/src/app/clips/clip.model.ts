@@ -2,7 +2,7 @@
 export interface Clip {
 
   shortUri: string;
-  catagory: string;
+  category: string;
   name: string;
   review?: string;
 }

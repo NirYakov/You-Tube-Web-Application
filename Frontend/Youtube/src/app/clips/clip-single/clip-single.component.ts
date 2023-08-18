@@ -31,7 +31,7 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
   @Input() clip: Clip =
     {
       shortUri: "pXRviuL6vMY",
-      catagory: "Nu metal",
+      category: "Nu metal",
       name: "stressed out",
       review: "Wow the best song in the wolrd!!"
     };
@@ -52,7 +52,7 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
       cate.delete(el);
       this.setCategoryies = cate;
       console.log("this.setCategoryies", this.setCategoryies);
-      this.selectFormControl.setValue(this.clip.catagory);
+      this.selectFormControl.setValue(this.clip.category);
 
     });
 

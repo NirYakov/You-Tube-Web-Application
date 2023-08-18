@@ -1,13 +1,69 @@
 
 const Clip = require("../models/clip");
+const User = require("../models/user");
 
 
 
-exports.createClip = (req, res, next) => {
-    res.status(400).json({
-        message: "Not Implemented!",
-        error: "n/a"
+exports.createClip = async (req, res, next) => {
+
+    console.log("Wyyyy ");
+
+    console.log(" req.body", req.body);
+
+    const link = req.body.shortUri;
+    const category = req.body.category;
+    const review = req.body.review;
+
+    const userId = req.userData.userId;
+
+    const clipInDb = await Clip.findOne({ creator: userId, link });
+
+    console.log(" clipInDb ", clipInDb);
+
+    if (clipInDb) {
+        res.status(401).json(
+            {
+                message: "Clip already the cliplist.",
+                error: "Clip already the cliplist."
+            });
+        return;
+    }
+
+
+    const newClip = new Clip({
+        creator: userId,
+        link,
+        category,
+        review,
     });
+
+
+    newClip.save()
+        .then(response => {
+
+            console.log(" Pow here and well ? ");
+
+            res.status(201).json(
+                {
+                    message: "Clip created!",
+                    response
+                });
+
+        }).catch(error => {
+            console.log(error);
+
+            res.status(401).json(
+                {
+                    message: "error !!",
+                    error
+                });
+        });
+
+
+    // res.status(400).json({
+    //     message: "Not Implemented!",
+    //     error: "n/a"
+    // });
 }
 
 
@@ -23,16 +79,28 @@ exports.getAllUserClips = (req, res, next) => {
 
     console.log(" Here in clip get all");
 
-    res.status(200).json({
-        message: "All clips",
-        clips: myClips
+    const clipsDb = Clip.find({ creator: req.userData.userId });
+
+    console.log("ping back clips get");
+
+
+
+    clipsDb.then(response => {
+
+        console.log("response", response);
+
+        res.status(200).json({
+            message: "All clips",
+            clips: response || []
+        });
+
+
+    }).catch(error => {
+        res.status(500).json({
+            message: "error !!",
+        });
+
     });
-
-
-    // res.status(400).json({
-    //     message: "Not Implemented!",
-    //     error: "n/a"
-    // });
 }
 
 
