@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Clip } from '../clip.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ClipsService } from '../clips.service';
 
 @Component({
   selector: 'app-clip-card',
@@ -19,10 +20,16 @@ export class ClipCardComponent implements OnInit {
       name: "stressed out",
     };
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private clipsService: ClipsService) { }
 
   ngOnInit() {
+
+
     this.YtUrl = this.returnVideoUrl(this.clip.shortUri);
+  }
+
+  MoveToSingle() {
+    this.clipsService.MoveToSingle(this.clip);
   }
 
   returnVideoUrl(id: string) {

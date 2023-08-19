@@ -2,20 +2,25 @@
 <div class="main-div">
 
   <mat-card style="border-radius: 1rem;" class="cardWidth green-shadow">
-    <mat-card-header>
-      <!-- <h4>Resource URL:</h4>
+    <div style="margin-left: 2rem; margin-top: 0rem;">
+      <mat-card-header>
+        <!-- <h4>Resource URL:</h4>
       <p>Showing: {{clip.shortUri}}</p> -->
 
-      <mat-card-title>{{clip.category}}</mat-card-title>
 
-      <mat-card-subtitle>
-        <!-- <a style="cursor: pointer;" (click)="onClickNameClip(clip)"> -->
-        <a style="cursor: pointer;">
+
+        <mat-card-title>
           {{clip.name}}
-        </a>
-      </mat-card-subtitle>
+        </mat-card-title>
 
-      <!-- <mat-card-subtitle>
+        <mat-card-subtitle>
+          <!-- <a style="cursor: pointer;" (click)="onClickNameClip(clip)"> -->
+
+
+          {{clip.category}}
+        </mat-card-subtitle>
+
+        <!-- <mat-card-subtitle>
         {{ baseUriYt + clip.shortUri}}
       </mat-card-subtitle>
 
@@ -23,21 +28,23 @@
         {{ clip.shortUri}}
       </mat-card-subtitle> -->
 
-    </mat-card-header>
+      </mat-card-header>
+    </div>
 
-    <div class="centerIt">
+
+    <div class=" centerIt" style="margin-top: 1rem;">
+      <mat-card-content>
+        <iframe class="e2e-iframe-trusted-src clipWidth" style="border-radius: 0.5rem;" [src]="YtUrl"></iframe>
+      </mat-card-content>
+    </div>
+
+
+    <div class="centerIt" style="margin-bottom: 1rem;">
       <mat-card-content>
         <!-- <h1 style="padding: 0 1rem 0 1rem ;">Review</h1> -->
         <p class="">
           {{clip.review}}
         </p>
-      </mat-card-content>
-    </div>
-
-
-    <div class=" centerIt">
-      <mat-card-content>
-        <iframe class="e2e-iframe-trusted-src clipWidth" style="border-radius: 0.5rem;" [src]="YtUrl"></iframe>
       </mat-card-content>
     </div>
 

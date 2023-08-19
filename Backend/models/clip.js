@@ -5,6 +5,7 @@ const clipSchema = mongoose.Schema({
     link: { type: String, required: true },
     category: { type: String, required: true },
     review: { type: String },
+    name: { type: String },
 });
 
 module.exports = mongoose.model("Clip", clipSchema);

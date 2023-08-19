@@ -30,6 +30,12 @@ export class ClipsService {
 
   allStarCategory = "All *";
 
+  loadSingleClip: Clip = {
+    shortUri: "pXRviuL6vMY",
+    category: "Nu metal",
+    name: "stressed out",
+  };
+
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
 
@@ -68,11 +74,18 @@ export class ClipsService {
     };
 
     if (ytLink)
-      this.http.post<Clip>(BACKEND_URL + '/clips/create', clip).subscribe(responseData => {
-        console.log(responseData);
-        this.myClips.push(clip);
-        this.updateInternal();
-      })
+      this.http.post<Clip>(BACKEND_URL + '/clips/create', clip).subscribe(
+
+        {
+          next: responseData => {
+            console.log(responseData);
+            this.myClips.push(clip);
+            this.updateInternal();
+          },
+          error: error => {
+            console.log(error);
+          }
+        })
     else {
       console.log("Not have an Id ...");
     };
@@ -112,6 +125,11 @@ export class ClipsService {
   }
   getCategoryUpdateListener() {
     return this.categoryUpdate.asObservable();
+  }
+
+
+  MoveToSingle(clip: Clip) {
+    this.loadSingleClip = clip;
   }
 
 

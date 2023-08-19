@@ -13,6 +13,7 @@ exports.createClip = async (req, res, next) => {
     const link = req.body.shortUri;
     const category = req.body.category;
     const review = req.body.review;
+    const name = req.body.name;
 
     const userId = req.userData.userId;
 
@@ -35,6 +36,7 @@ exports.createClip = async (req, res, next) => {
         link,
         category,
         review,
+        name,
     });
 
 

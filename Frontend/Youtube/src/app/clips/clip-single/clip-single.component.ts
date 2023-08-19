@@ -39,6 +39,16 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
   constructor(private sanitizer: DomSanitizer, private clipsService: ClipsService) { }
 
   ngOnInit() {
+
+
+    const loadClip = this.clipsService.loadSingleClip;
+
+    if (loadClip) {
+      this.clip = loadClip
+    }
+
+    console.log("Her in single clip , ", this.clip);
+
     this.YtUrl = this.returnVideoUrl(this.clip.shortUri);
 
     this.initCreateAndAll();

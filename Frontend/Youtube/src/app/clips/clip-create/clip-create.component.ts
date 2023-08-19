@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ClipsService } from '../clips.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
@@ -32,7 +32,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subCategories!: Subscription;
 
-  constructor(private clipsService: ClipsService, private route: ActivatedRoute) {
+  constructor(private clipsService: ClipsService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -128,7 +128,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     this.clipsService.addClip(category, shortUri, name, review);
 
 
-
+    this.router.navigate(["/"]);
 
   }
 }

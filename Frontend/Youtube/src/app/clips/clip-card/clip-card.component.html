@@ -5,13 +5,17 @@
       <!-- <h4>Resource URL:</h4>
       <p>Showing: {{clip.shortUri}}</p> -->
 
-      <mat-card-title>{{clip.category}}</mat-card-title>
+      <!-- [routerLink]="'/single'" -->
+      <mat-card-title>
+        <a style="cursor: pointer;" (click)="MoveToSingle()" [routerLink]="'/single'" routerLinkActive="mat-accent">
+          {{clip.name}}
+        </a>
+
+      </mat-card-title>
 
       <mat-card-subtitle>
         <!-- <a style="cursor: pointer;" (click)="onClickNameClip(clip)"> -->
-        <a style="cursor: pointer;" routerLink="/single" routerLinkActive="mat-accent">
-          {{clip.name}}
-        </a>
+        {{clip.category}}
       </mat-card-subtitle>
 
       <!-- <mat-card-subtitle>
