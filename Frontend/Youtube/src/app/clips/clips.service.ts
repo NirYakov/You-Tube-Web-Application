@@ -3,7 +3,7 @@ import { Clip } from './clip.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../environments/environment';
 
 
@@ -36,7 +36,7 @@ export class ClipsService {
     name: "stressed out",
   };
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer, private router: Router) { }
 
 
   getClips() {
@@ -81,6 +81,8 @@ export class ClipsService {
             console.log(responseData);
             this.myClips.push(clip);
             this.updateInternal();
+
+            this.router.navigate(["/"]);
           },
           error: error => {
             console.log(error);
@@ -140,6 +142,20 @@ export class ClipsService {
     this.updateInternal();
   }
 
+
+  deleteClip(shortUri: string) {
+    this.http.delete(BACKEND_URL + '/clips/' + shortUri).subscribe(
+      {
+        next: responseData => {
+          console.log(responseData);
+          this.router.navigate(["/"]);
+        },
+        error: error => {
+          console.log(error);
+        }
+      })
+
+  }
 
 
 }

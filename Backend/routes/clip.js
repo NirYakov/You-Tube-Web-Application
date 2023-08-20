@@ -13,6 +13,6 @@ router.get("/", middleWareJwt, ClipController.getAllUserClips); // get all clips
 
 router.put("/:id", middleWareJwt, ClipController.updatedClip); // put / update clip
 
-router.delete("/:id", middleWareJwt, ClipController.deleteClip); // delete a clip
+router.delete("/:link", middleWareJwt, ClipController.deleteClip); // delete a clip
 
 module.exports = router;

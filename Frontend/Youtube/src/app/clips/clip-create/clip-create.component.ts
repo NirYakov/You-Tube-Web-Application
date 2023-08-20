@@ -32,7 +32,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subCategories!: Subscription;
 
-  constructor(private clipsService: ClipsService, private route: ActivatedRoute, private router: Router) {
+  constructor(private clipsService: ClipsService, private route: ActivatedRoute) {
 
   }
 
@@ -126,9 +126,6 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
     this.clipsService.addClip(category, shortUri, name, review);
-
-
-    this.router.navigate(["/"]);
 
   }
 }

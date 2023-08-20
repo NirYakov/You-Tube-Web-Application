@@ -115,9 +115,21 @@ exports.updatedClip = (req, res, next) => {
 
 
 exports.deleteClip = (req, res, next) => {
-    res.status(400).json({
-        message: "Not Implemented!",
-        error: "n/a"
+    const link = req.params.link;
+    const userId = req.userData.userId;
+
+    console.log("link : ", link);
+    console.log("userId : ", userId);
+
+    Show.deleteOne({ link, creator: req.userData.userId }).then(result => {
+        if (result.deletedCount > 0) {
+            res.status(200).json({ message: "Deletion successful!" });
+        }
+        else {
+            res.status(401).json({ message: "Not Authorized!" });
+        }
+    }).catch(error => {
+        res.status(500).json({ message: "Fetcing post failed!" });
     });
 }
 
