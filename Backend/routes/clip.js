@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/create", middleWareJwt, ClipController.createClip); // create or post a clip
 
-router.get("/:id", middleWareJwt, ClipController.getClip); // get one clip
+router.get("/:link", middleWareJwt, ClipController.getClip); // get one clip
 
 router.get("/", middleWareJwt, ClipController.getAllUserClips); // get all clips
 

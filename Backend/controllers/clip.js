@@ -70,10 +70,35 @@ exports.createClip = async (req, res, next) => {
 
 
 exports.getClip = (req, res, next) => {
-    res.status(400).json({
-        message: "Not Implemented!",
-        error: "n/a"
+
+    const link = req.params.link;
+    const creator = req.userData.userId;
+
+
+    const clip = Clip.findOne({ creator, link });
+
+    console.log({ creator });
+
+    console.log("ping back clip get");
+
+    clip.then(response => {
+
+        res.status(200).json({
+            message: "show :)",
+            clip: response
+        });
+
+    }).catch(error => {
+        res.status(500).json({
+            message: "error !!",
+        });
+
     });
+
+    // res.status(400).json({
+    //     message: "Not Implemented!",
+    //     error: "n/a"
+    // });
 }
 
 
@@ -121,7 +146,7 @@ exports.deleteClip = (req, res, next) => {
     console.log("link : ", link);
     console.log("userId : ", userId);
 
-    Show.deleteOne({ link, creator: req.userData.userId }).then(result => {
+    Clip.deleteOne({ link, creator: req.userData.userId }).then(result => {
         if (result.deletedCount > 0) {
             res.status(200).json({ message: "Deletion successful!" });
         }
