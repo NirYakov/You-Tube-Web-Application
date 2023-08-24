@@ -11,7 +11,7 @@ router.get("/:link", middleWareJwt, ClipController.getClip); // get one clip
 
 router.get("/", middleWareJwt, ClipController.getAllUserClips); // get all clips
 
-router.put("/:id", middleWareJwt, ClipController.updatedClip); // put / update clip
+router.put("/:link", middleWareJwt, ClipController.updatedClip); // put / update clip
 
 router.delete("/:link", middleWareJwt, ClipController.deleteClip); // delete a clip
 

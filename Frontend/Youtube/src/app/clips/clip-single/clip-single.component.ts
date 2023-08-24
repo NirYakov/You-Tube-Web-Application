@@ -57,18 +57,18 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
 
   initCreateAndAll() {
     this.subCategories = this.clipsService.getCategoryUpdateListener().subscribe(cate => {
-      // cate.delete(cate[0]);
       const [el] = cate;
       cate.delete(el);
       this.setCategoryies = cate;
-      console.log("this.setCategoryies", this.setCategoryies);
-      this.selectFormControl.setValue(this.clip.category);
-
     });
 
     this.clipsService.getClips();
 
+    //this.clipsService.getClips();
+
     this.clipnameControl.setValue(this.clip.name);
+    this.selectFormControl.setValue(this.clip.category);
+    this.myReviewText.setValue(this.clip.review);
 
   }
 
@@ -92,15 +92,28 @@ export class ClipSingleComponent implements OnInit, OnDestroy {
 
   onSave() {
 
+    const clipName = this.clipnameControl.value;
+    const category = this.selectFormControl.value;
+    const review = this.myReviewText.value;
 
-    console.log("this.selectFormControl", this.selectFormControl);
-    console.log("this.myReviewText", this.myReviewText);
-    console.log("this.clipnameControl", this.clipnameControl);
+    console.log("name ", clipName);
+    console.log("category ", category);
+    console.log("review ", review);
 
+    const updateClip: Clip =
+    {
+      name: clipName,
+      category,
+      shortUri: this.clip.shortUri,
+      review
+    };
+
+    this.clipsService.updateClip(updateClip);
 
   }
 
   onDelete() {
+    this.clipsService.deleteClip(this.clip.shortUri);
     console.log("onDelete() ...");
   }
 }

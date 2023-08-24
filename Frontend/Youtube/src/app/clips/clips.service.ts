@@ -142,6 +142,20 @@ export class ClipsService {
     this.updateInternal();
   }
 
+  updateClip(clip: Clip) {
+    this.http.put(BACKEND_URL + '/clips/' + clip.shortUri, clip).subscribe(
+      {
+        next: responseData => {
+          console.log(responseData);
+          this.router.navigate(["/"]);
+        },
+        error: error => {
+          console.log(error);
+        }
+      })
+
+  }
+
 
   deleteClip(shortUri: string) {
     this.http.delete(BACKEND_URL + '/clips/' + shortUri).subscribe(

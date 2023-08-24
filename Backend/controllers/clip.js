@@ -131,11 +131,46 @@ exports.getAllUserClips = (req, res, next) => {
 }
 
 
-exports.updatedClip = (req, res, next) => {
-    res.status(400).json({
-        message: "Not Implemented!",
-        error: "n/a"
-    });
+exports.updatedClip = async (req, res, next) => {
+
+    try {
+
+        const link = req.params.link;
+        const userId = req.userData.userId;
+        const name = req.body.name;
+        const category = req.body.category;
+        const review = req.body.review;
+
+        if (!name || !category || !review || !link || !userId) {
+            res.status(500).json({ message: "Error in parameters!" });
+            return;
+        }
+
+        console.log(userId, link);
+
+        const filter = { creator: userId, link };
+        const update = { name, category, review };
+
+        const clip = await Clip.findOneAndUpdate(filter, update, {
+            returnOriginal: false
+        });
+
+
+        res.status(200).json({
+            health: "Online ! :)",
+            clip
+        });
+
+    } catch (error) {
+
+        console.log("error clip show ", error);
+        res.status(500).json({ message: "Fetcing clip failed!" });
+    }
+
+    // res.status(400).json({
+    //     message: "Not Implemented!",
+    //     error: "n/a"
+    // });
 }
 
 
