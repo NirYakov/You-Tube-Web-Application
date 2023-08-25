@@ -1,138 +1,77 @@
 <div style="margin: 2rem"></div>
 <div class="centerClass">
   <div class="widthForm">
+    <form (ngSubmit)="AddNewClipTest()" [formGroup]="form">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Youtube link?</mat-label>
+        <input matInput type="text" formControlName="link" (change)="changeValue()">
+      </mat-form-field>
+      <br>
 
+      <button mat-stroked-button color="primary">Search</button>
 
-    <!-- <div style="background-color: azure;">
-        <mat-card color="primary"> -->
+      <p>Value: {{form.get('link').value}}</p>
 
-    <!-- later chage back to origin color or something like that -->
-    <!-- <form> -->
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Clip name</mat-label>
+        <input matInput #message maxlength="32" placeholder="Clip name" formControlName="name">
+        <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
+      </mat-form-field>
 
-    <!-- <form class="example-form"> -->
-    <div>
+      <div *ngIf="!newCategoryMode">
 
-      <form (ngSubmit)="AddNewClipTest()" [formGroup]="form">
-
-
+        <h3>Pick category</h3>
 
         <mat-form-field class="example-full-width" appearance="outline">
-
-          <mat-label>Youtube link?</mat-label>
-          <input matInput type="text" formControlName="link" (change)="changeValue()">
-
-          <!-- <button>LOL</button> -->
-
-          <!-- <button *ngIf="link" matSuffix mat-icon-button aria-label="Clear" (click)="link=''">
-          Close?
-          <mat-icon>close</mat-icon>
-        </button> -->
-
-
+          <mat-label>Favorite category</mat-label>
+          <mat-select formControlName="categorySelect" name="All *">
+            <mat-option *ngFor="let cate of setCategoryies" [value]="cate">
+              {{cate}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <br>
-
-        <button mat-stroked-button color="primary">Search</button>
-
-        <p>Value: {{form.get('link').value}}</p>
-        <!--
-      <div class=" main-div">
-
-        <mat-card style="border-radius: 1rem;">
-
-          <div class="centerIt">
-            <mat-card-content>
-              <iframe class="e2e-iframe-trusted-src" style="border-radius: 0.5rem;" [src]="link"></iframe>
-            </mat-card-content>
-          </div>
-
-        </mat-card>
+        <p> Selected category: {{form.get('categorySelect').value}} </p>
       </div>
- -->
 
+      <mat-button-toggle (change)="makeNewCategory()">Make new category</mat-button-toggle>
 
-
+      <div *ngIf="newCategoryMode">
+        <h3>Create new category</h3>
         <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Clip name</mat-label>
-          <input matInput #message maxlength="32" placeholder="Clip name" formControlName="name">
-          <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
+          <mat-label>Category</mat-label>
+          <input matInput #cate maxlength="32" placeholder="Catergory" formControlName="category">
+          <mat-hint align="end">{{cate.value.length}} / 32</mat-hint>
         </mat-form-field>
 
+        <br>
+      </div>
 
-        <div *ngIf="!newCategoryMode">
+      <div style="margin-top: 1.75rem;">
+        <mat-form-field class="textBox" appearance="outline">
+          <mat-label>Message</mat-label>
+          <textarea formControlName="review" matInput maxlength="256" placeholder="My Clip Review ..."
+            rows="6"></textarea>
 
-          <h3>Pick category</h3>
-
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Favorite category</mat-label>
-            <mat-select formControlName="categorySelect" name="All *">
-              <mat-option *ngFor="let cate of setCategoryies" [value]="cate">
-                {{cate}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <p> Selected category: {{selectFormControl.value}} </p>
-        </div>
-
-        <!-- <button (click)="makeNewCategory()">Make new category</button> -->
-
-        <mat-button-toggle (change)="makeNewCategory()">Make new category</mat-button-toggle>
-
-        <div *ngIf="newCategoryMode">
-          <h3>Create new category</h3>
-
-
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Category</mat-label>
-            <input matInput #cate maxlength="32" placeholder="Catergory" formControlName="category">
-            <mat-hint align="end">{{cate.value.length}} / 32</mat-hint>
-          </mat-form-field>
-
-          <br>
-
-        </div>
-
-        <div style="margin-top: 1.75rem;">
-          <mat-form-field class="textBox" appearance="outline">
-            <mat-label>Message</mat-label>
-            <textarea formControlName="review" matInput maxlength="256" placeholder="My Clip Review ..."
-              rows="6"></textarea>
-
-            <!-- <textarea formControlName="myReviewText" matInput maxlength="256"
+          <!-- <textarea formControlName="myReviewText" matInput maxlength="256"
           placeholder="Ex. I need help with..."></textarea>
         -->
 
-            <mat-hint align="end">{{myReviewText.value.length }} / 256</mat-hint>
-            <!-- <mat-hint align="end">{{form.get("myReviewText").value.length}} / 256</mat-hint> -->
-          </mat-form-field>
-        </div>
+          <mat-hint align="end">{{form.get('review').value.length }} / 256</mat-hint>
+          <!-- <mat-hint align="end">{{form.get("myReviewText").value.length}} / 256</mat-hint> -->
+        </mat-form-field>
+      </div>
 
-
-
-
-
-
-        <div *ngIf="flagHaveYoutubeLink">
-          <br>
-          <p body-1> Preview</p>
-          <br>
-          <iframe class="e2e-iframe-trusted-src" class="" [src]="youtubeLink"></iframe>
-        </div>
-
+      <div *ngIf="flagHaveYoutubeLink">
         <br>
-        <button mat-stroked-button color="primary" class="example-full-width" type="submit">
-          Add New Clip</button>
-
-        <!-- </form> -->
-
+        <p body-1> Preview</p>
         <br>
+        <iframe class="e2e-iframe-trusted-src" class="" [src]="youtubeLink"></iframe>
+      </div>
 
-      </form>
-    </div>
-
-    <!-- </form> -->
-
-    <!-- </mat-card>
-      </div> -->
+      <br>
+      <button mat-stroked-button color="primary" class="example-full-width" type="submit">
+        Add New Clip</button>
+      <br>
+    </form>
   </div>
 </div>

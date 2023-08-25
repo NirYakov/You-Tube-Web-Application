@@ -55,6 +55,8 @@
 
 <br><br><br><br>
 
+<!-- <form (ngSubmit)="" [formGroup]="form"> -->
+
 <div class="main-div">
 
 
@@ -65,7 +67,7 @@
     <!-- <div> -->
 
     <p>Edit name of the clip</p>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Clip name</mat-label>
       <input matInput #message maxlength="32" placeholder="Clip name" [formControl]="clipnameControl">
       <mat-hint align="end">{{message.value.length}} / 32</mat-hint>
@@ -74,7 +76,7 @@
 
     <p>Edit category of the clip</p>
     <div>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Favorite category</mat-label>
         <mat-select name="All *" [formControl]="selectFormControl">
           <!-- [name]="clip.catagory" -->
@@ -113,3 +115,4 @@
 
   </div>
 </div>
+<!-- </form> -->

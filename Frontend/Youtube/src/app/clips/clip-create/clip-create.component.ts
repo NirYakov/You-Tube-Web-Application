@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ClipsService } from '../clips.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { Form, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -15,20 +15,11 @@ import { Form, FormBuilder, FormControl, Validators } from '@angular/forms';
 export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
   link = '';
 
-  // youtubeUrl(link)
-
   youtubeLink: SafeResourceUrl = "";
   flagHaveYoutubeLink = false;
   newCategoryMode = false;
 
-  selectedValue!: string;
   setCategoryies = new Set();
-
-  newCategoryForm = new FormControl('', [Validators.required]);
-  selectFormControl = new FormControl('', [Validators.required]);
-  clipnameControl = new FormControl('', [Validators.required]);
-  myReviewText = new FormControl('');
-
 
   form = this.fb.group({
     link: ['', Validators.required],
@@ -41,22 +32,16 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subCategories!: Subscription;
 
-  constructor(private clipsService: ClipsService, private route: ActivatedRoute, private fb: FormBuilder) {
-
-  }
+  constructor(private clipsService: ClipsService, private fb: FormBuilder) { }
 
   ngAfterViewInit(): void {
     // this.initCreateAndAll()
-
   }
 
-  makeNewCategory() {
-    this.newCategoryMode = !this.newCategoryMode;
-  }
+  makeNewCategory() { this.newCategoryMode = !this.newCategoryMode; }
 
   youtubeUrl(link: string) {
     if (!link) { return ""; }
-
 
     console.log("youtubeUrl Work?");
 
@@ -73,12 +58,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subCategories.unsubscribe();
   }
 
-
-  ngOnInit() {
-
-    this.initCreateAndAll()
-
-  }
+  ngOnInit() { this.initCreateAndAll(); }
 
   initCreateAndAll() {
     this.subCategories = this.clipsService.getCategoryUpdateListener().subscribe(cate => {
@@ -87,7 +67,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
       this.setCategoryies = cate;
     });
 
-    const routId = this.route.snapshot.params['id'];
+    // const routId = this.route.snapshot.params['id'];
     this.clipsService.getClips();
   }
 
@@ -97,45 +77,26 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     this.youtubeUrl(this.link);
   }
 
-
-  AddNewClip() {
-    console.log("HERERE POST ???? AAA");
-    if (this.selectedValue) {
-      console.log(this.selectedValue, this.link);
-      // const routId = this.route.snapshot.params['id'] || Math.floor(Math.random() * 50_000);
-      // const routId = this.route.snapshot.params['id'];
-
-
-
-      // this.clipsService.addClip(this.selectedValue, this.link.split("=")[1], routId);
-    }
-    else {
-      console.log("Not have Clip Value");
-    }
-  }
-
-
-
   AddNewClipTest() {
 
-    let category = this.form.get('category').value;
+    let category = this.form.get('categorySelect').value;
 
     if (this.newCategoryMode) {
-      category = this.form.get('categorySelect').value;
+      category = this.form.get('category').value;
     }
 
     const shortUri = this.link.split("=")[1];
     const name = this.form.get('name').value;
     const review = this.form.get('review').value;
 
-    console.log("category", category);
     // console.log("link", this.link);
-    console.log("clipnameControl.value", name);
-    console.log("clipnameControl.value split ", shortUri);
-    console.log("myReviewText.value", review);
+    console.log("shortUri ", shortUri);
+    console.log("name ", name);
+    console.log("category ", category);
+    console.log("review ", review);
 
 
-    //  this.clipsService.addClip(category, shortUri, name, review);
+    this.clipsService.addClip(category, shortUri, name, review);
 
   }
 }
