@@ -4,22 +4,23 @@
     <form (ngSubmit)="onSignup()" *ngIf="!isLoading" [formGroup]="form">
       <div style="margin-bottom: 2rem;">
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput name="email" type="email" placeholder="Email" formControlName="email">
           <mat-error *ngIf="form.invalid">Please enter a valid email.</mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input type="password" name="password" matInput placeholder="Password" formControlName="password">
           <mat-error *ngIf="form.invalid">Please enter a valid password.</mat-error>
-          <mat-error *ngIf="form.invalid">Your password must have lower case, upper case and numeric
+          <mat-error *ngIf="form.invalid">Your password must have lower case, upper case
+            and numeric
             characters.</mat-error>
 
           <!-- <div class="field-message" *ngIf="password.errors?.['passwordStrength']">
-        Your password must have lower case, upper case and numeric characters.
-      </div> -->
+            Your password must have lower case, upper case and numeric characters.
+          </div> -->
 
           <!-- <div class="field-message" *ngIf="password.errors?.passwordStrength">
         Your password must have lower case, upper case and numeric characters.
@@ -27,7 +28,9 @@
 
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <div style="margin-bottom: 2rem;" *ngIf=""></div> -->
+
+        <mat-form-field appearance="outline">
           <mat-label>Confirm Password</mat-label>
           <input type="password" name="confirmPassword" matInput placeholder="Confirm Password"
             formControlName="confirmPassword">

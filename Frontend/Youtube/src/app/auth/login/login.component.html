@@ -2,12 +2,12 @@
   <div class="widthForm">
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <form (ngSubmit)="onLogin()" *ngIf="!isLoading" [formGroup]="form">
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input matInput name="email" type="email" placeholder="Email" formControlName="email">
         <mat-error *ngIf="form.invalid">Please enter a valid email.</mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input type="password" name="password" matInput placeholder="Password" formControlName="password">
         <mat-error *ngIf="form.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>

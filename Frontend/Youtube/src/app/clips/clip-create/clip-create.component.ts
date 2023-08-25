@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ClipsService } from '../clips.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { FormControl, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -30,9 +30,18 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
   myReviewText = new FormControl('');
 
 
+  form = this.fb.group({
+    link: ['', Validators.required],
+    name: ['', Validators.required],
+    categorySelect: [''],
+    category: [''],
+    review: ['', Validators.required],
+  });
+
+
   subCategories!: Subscription;
 
-  constructor(private clipsService: ClipsService, private route: ActivatedRoute) {
+  constructor(private clipsService: ClipsService, private route: ActivatedRoute, private fb: FormBuilder) {
 
   }
 
@@ -84,6 +93,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   changeValue() {
     console.log("Value Changed!");
+    this.link = this.form.get('link').value;
     this.youtubeUrl(this.link);
   }
 
@@ -108,15 +118,15 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
   AddNewClipTest() {
 
-    let category = this.selectFormControl.value;
+    let category = this.form.get('category').value;
 
     if (this.newCategoryMode) {
-      category = this.newCategoryForm.value;
+      category = this.form.get('categorySelect').value;
     }
 
     const shortUri = this.link.split("=")[1];
-    const name = this.clipnameControl.value;
-    const review = this.myReviewText.value;
+    const name = this.form.get('name').value;
+    const review = this.form.get('review').value;
 
     console.log("category", category);
     // console.log("link", this.link);
@@ -125,7 +135,7 @@ export class ClipCreateComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log("myReviewText.value", review);
 
 
-    this.clipsService.addClip(category, shortUri, name, review);
+    //  this.clipsService.addClip(category, shortUri, name, review);
 
   }
 }
