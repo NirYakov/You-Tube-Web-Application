@@ -31,7 +31,9 @@ export class ClipsListComponent implements OnInit, OnDestroy {
   subCategories: Subscription;
   setCategoryies = new Set();
 
-  constructor(public clipsService: ClipsService, private route: ActivatedRoute) {
+  myControl = new FormControl('');
+
+  constructor(public clipsService: ClipsService) {
     // this.updateVideoUrl('70hIRnj9kf8');
 
 
@@ -40,6 +42,7 @@ export class ClipsListComponent implements OnInit, OnDestroy {
 
     this.subClips = this.clipsService.getClipsUpdateListener().subscribe((clips) => {
       this.showClips = this.myClips = clips;
+      this.initAuto();
     });
 
 
@@ -47,8 +50,7 @@ export class ClipsListComponent implements OnInit, OnDestroy {
       this.setCategoryies = cate;
     });
 
-    // const routId = this.route.snapshot.params['id'] ;
-    const routId = this.route.snapshot.params['id'] || 0; // BM
+    // const routId = this.route.snapshot.params['id'] || 0; // BM
 
     this.clipsService.getClips();
     this.inputControl = new FormControl(""); // new FormControl("",Validators.required);
@@ -84,9 +86,6 @@ export class ClipsListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // All *
 
-
-
-
     this.filteredOptions = this.autoComplateControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),);
@@ -97,6 +96,30 @@ export class ClipsListComponent implements OnInit, OnDestroy {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  initAuto() {
+    this.optionsSearch = this.myClips.map(clip => clip.name);
+
+    console.log(this.optionsSearch);
+
+    // Auto Search
+    this.filteredOptionsSearch = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterSearch(value || '')),
+    );
+
+  }
+
+  findClip() {
+
+    const clipName = this.myControl.value;
+    console.log("clipName", clipName);
+
+    this.clipResultsSearch = this.myClips.filter(clip => {
+      return clip.name === clipName;
+    });
+
   }
 
   emptyArray = [];
@@ -153,7 +176,21 @@ export class ClipsListComponent implements OnInit, OnDestroy {
   }
 
 
+
+
+
   ///////////////////// Tiles Example
+
+
+  optionsSearch: string[] = [];
+  filteredOptionsSearch: Observable<string[]>;
+
+
+  private _filterSearch(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.optionsSearch.filter(option => option.toLowerCase().includes(filterValue));
+  }
 
 
   tiles: Tile[] = [

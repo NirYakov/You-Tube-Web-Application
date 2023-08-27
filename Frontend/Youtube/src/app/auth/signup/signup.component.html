@@ -28,7 +28,8 @@
 
         </mat-form-field>
 
-        <!-- <div style="margin-bottom: 2rem;" *ngIf=""></div> -->
+        <div style="margin-bottom: 2rem;"
+          *ngIf="form.controls['password'].invalid && form.controls['password'].touched "></div>
 
         <mat-form-field appearance="outline">
           <mat-label>Confirm Password</mat-label>
