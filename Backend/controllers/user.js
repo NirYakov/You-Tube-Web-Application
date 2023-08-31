@@ -3,6 +3,27 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.createUser = (req, res, next) => {
+
+    const password = req.body.password;
+    const email = req.body.email;
+
+
+    if (!Validators.isEmailValid(email)) {
+        res.status(400).json({
+            message: "Invalid authentication credentials! email is not in the right format!"
+        });
+        return;
+    }
+
+
+    // if (!Validators.createPasswordStrengthValidator(password)) {
+    //     res.status(400).json({
+    //         message: "Invalid authentication credentials! password is too weak!"
+    //     });
+    //     return;
+    // }
+
+
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
             email: req.body.email,
@@ -28,6 +49,26 @@ exports.createUser = (req, res, next) => {
 exports.userLogin = (req, res, next) => {
     let fetchedUser;
     console.log(req.body);
+
+    const password = req.body.password;
+    const email = req.body.email;
+
+
+    if (!Validators.isEmailValid(email)) {
+        res.status(400).json({
+            message: "Invalid authentication credentials! email is not in the right format!"
+        });
+        return;
+    }
+
+    // if (!Validators.createPasswordStrengthValidator(password)) {
+    //     res.status(400).json({
+    //         message: "Invalid authentication credentials! password is too weak!"
+    //     });
+    //     return;
+    // }
+
+
 
     User.findOne({ email: req.body.email })
         .then(user => {
