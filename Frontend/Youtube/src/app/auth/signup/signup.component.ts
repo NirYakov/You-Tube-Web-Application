@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { createPasswordStrengthValidator } from '../passwordValidator';
 
 @Component({
   selector: 'app-signup',
@@ -29,7 +30,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       // \w+(\w|\d)*@\w+(\w|\d)*\.\w+(\w|\d)
       // email: ['', Validators.required, Validators.pattern('\w+(\w|\d)*@\w+(\w|\d)*\.\w+(\w|\d)')],
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6), createPasswordStrengthValidator()]),
       confirmPassword: new FormControl('', [Validators.required])
     });
   }

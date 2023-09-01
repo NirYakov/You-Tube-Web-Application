@@ -16,12 +16,12 @@ exports.createUser = (req, res, next) => {
     }
 
 
-    // if (!Validators.createPasswordStrengthValidator(password)) {
-    //     res.status(400).json({
-    //         message: "Invalid authentication credentials! password is too weak!"
-    //     });
-    //     return;
-    // }
+    if (!Validators.createPasswordStrengthValidator(password)) {
+        res.status(400).json({
+            message: "Invalid authentication credentials! password is too weak!"
+        });
+        return;
+    }
 
 
     bcrypt.hash(req.body.password, 10).then(hash => {
@@ -61,13 +61,12 @@ exports.userLogin = (req, res, next) => {
         return;
     }
 
-    // if (!Validators.createPasswordStrengthValidator(password)) {
-    //     res.status(400).json({
-    //         message: "Invalid authentication credentials! password is too weak!"
-    //     });
-    //     return;
-    // }
-
+    if (!Validators.createPasswordStrengthValidator(password)) {
+        res.status(400).json({
+            message: "Invalid authentication credentials! password is too weak!"
+        });
+        return;
+    }
 
 
     User.findOne({ email: req.body.email })
