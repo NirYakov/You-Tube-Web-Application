@@ -10,3 +10,12 @@
 
   flex-wrap: wrap;
 }
+
+.yellow-border {
+  /* border-style: solid; */
+  border: gold;
+
+  border-style: solid;
+  /* border-color: #ffe261; */
+  border-width: 0.25px;
+}

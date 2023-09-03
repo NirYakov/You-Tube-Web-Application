@@ -5,7 +5,7 @@
   <div class="allin">
     <div>
       <!-- <mat-form-field style="margin-top: 1rem;" class="allin"> -->
-      <mat-form-field class="allin" appearance="outline">
+      <mat-form-field appearance="outline">
         <mat-label>Favorite category</mat-label>
         <mat-select [(ngModel)]="selectedValue" name="All *">
           <mat-option *ngFor="let cate of setCategoryies" [value]="cate">
@@ -13,23 +13,30 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+      <!-- <br>
       <p class="allin"> Selected category: {{selectedValue}} </p>
-      <br>
+      <br> -->
 
-      <div class="allin">
-        <button mat-stroked-button color="primary" type="button" (click)="filterClips($event)">Show Clips </button>
-      </div>
+      <button mat-stroked-button style="margin-left: 3rem;" color="primary" type="button"
+        (click)="filterClips($event)">Show
+        Clips</button>
+
+      <button mat-stroked-button style="margin-left: 3rem;" color="primary" type="button" routerLink="/create">Add New
+        Clip
+      </button>
+
+
+      <!-- <div class="allin"></div> -->
     </div>
   </div>
 </div>
 
-<h2 class="allin">{{testLabel}}</h2>
+<!-- <h2 class="allin">{{testLabel}}</h2> -->
 
 <div>
-  <a class="allin">Search Clip Box</a>
-  <br>
-  <h4 class="allin">Search Box Auto Complate</h4>
+  <!-- <a class="allin">Search Clip Box</a> -->
+  <!-- <br> -->
+  <!-- <h4 class="allin">Search Box Auto Complate</h4> -->
   <br>
 
   <div class="allin">
@@ -49,13 +56,14 @@
     <button mat-stroked-button (click)="clearSearchClip()" style="padding: 1.7rem; margin-top: -1.4rem;">Clear</button>
   </div>
 
-  <div class="allin">
+  <!-- <div class="allin">
     <button mat-stroked-button color="primary" type="button" routerLink="/create">Add New Clip </button>
-  </div>
+  </div> -->
 
   <div *ngFor=" let clip of clipResultsSearch" style="margin: 1rem;">
     <app-clip-card [clip]="clip"></app-clip-card>
-    <p>Wow</p>
+    <br>
+    <br>
   </div>
 </div>
 
@@ -67,5 +75,6 @@
     </div>
     <p *ngIf="showClips.length < 1">No Clips Here</p>
   </div>
-  <p> End For Now</p>
 </div>
+<br>
+<br>
