@@ -19,7 +19,6 @@ exports.createClip = async (req, res, next) => {
 
   const clipInDb = await Clip.findOne({ creator: userId, link });
 
-
   if (!Validators.checkYoutubeShortLink(link)) {
     console.log("Not a short link format");
   }
