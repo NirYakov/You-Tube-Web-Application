@@ -12,3 +12,18 @@
   width: 600px;
   margin: 2rem;
 }
+
+.yellow-border {
+  /* border-style: solid; */
+  border: gold;
+
+  border-style: solid;
+  /* border-color: #ffe261; */
+  border-width: 0.25px;
+}
+
+.centerIt {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
